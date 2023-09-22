@@ -1,46 +1,70 @@
 <!DOCTYPE html>
 <!-- saved from url=(0066)file:///C:/Users/Marise%20Miranda/Downloads/Marises%20Machine.html -->
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html lang="en">
+<head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="style.css">
+        <title>Document</title>
 </head>
 
-<body bgcolor="#00ffff">
+<body id="testeBody" onload="gerarNum()">
+        
     
     <center>
+        <img src="https://s3-alpha-sig.figma.com/img/5833/5c58/d6d8bb83edbe4b584439a01e5dd1e846?Expires=1696204800&Signature=CLrOHKQT18vMwr-QxpaPdYSjRRRD-mYTg4YBosPy~mZgdF8JCjSHz6YMAf2QEDAp~MRVEhgT95xudBpR~bn9PVt5RJtdIlnSKBa~s70-Q1LBcoiBiipkXeYt8C01uQgrxiJ85RehtNoblyl~pRSB2c2I~f6~xL7-BJ7xKfqheeVgTcCqL8IFEcNZy-Kll83RxpL5mQrz4MWo8w0E0ZEMI3iBUge4GNjJe2vEUae2rBU0iFf9UahsOyiuVhLw9ml8YHVcxqvIEAsEoDbyTsFjHDF7684HQLJDXFLrmDWzh0fWcDn3VDNa~Ay0R1a3lheIubq1qRzTQK5AM6VmRtWfpQ__&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4" width="160px">
         <h1>Marise's Game</h1>
+        <p class="subTitulo">Com base no numero decimal aleatório abaixo acerte o representante numérico octal, hexadecimal e binário.</p>
 
-<br><br>
-
-        <h3>Decimal</h3>
-        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(0, 0, 0); width: 15%; height: 40px; font-weight: 500;" id="demo1"></span></div>
-<br><br>
-        <button onclick="gerarNum()">Gerar número aleatório</button>
-<br><br>
-
-        <h3>Acerte todos as conersões e ganhe um premio: </h3>
-
-
-        <input onclick="aparecer_octal()" type="checkbox"><b>Octal</b>
 <br>
-        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(0, 0, 0); width: 15%; height: 40px; font-weight: 500;" id="demo2"><input type="text" id="input_usuario_oct"></div>
+
+        
+        <div class="divDecimalReal" id="demo1">
+                <h3>Decimal</h3>
+                <h3 class="h3Diferente" id="h3">Número aleatório</h3>
+                <a onclick="gerarNum()">Gerar outro número</a>
+        </div>
+<br><br>
+        <div class="horizontal">
+                <div>
+                        <h3>Sequência de acertos</h3>
+                        <span id="streak">0</span>
+                </div>
+                <div>
+                        <h3>Recorde</h3>
+                        <span id="recorde">0</span>
+                </div>
+        </div>
+<br>    
+        <h3>Octal</h3>
+
+
+
+        <div id="demo2">
+                <input type="text" placeholder="Insira sua resposta" id="input_usuario_oct">
+        </div>
 
 <br><br>
 
-        <input onclick="aparecer_hexa()" type="checkbox"><b>Hexadecimal</b>
-<br>
-        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(7, 7, 7); width: 15%; height: 40px; font-weight: 500;" id="demo3"><input type="text" id="input_usuario_hex"></div>
+        <h3>Hexadecimal</h3>
+
+        <div id="demo3">
+                <input type="text" placeholder="Insira sua resposta" id="input_usuario_hex">
+        </div>
         
 <br><br>
 
-        <input onclick="aparecer_bin()" type="checkbox"><b>Binário</b>
-<br>
-        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(5, 5, 5); width: 15%; height: 50px; font-weight: 500;" id="demo4"><input type="text" id="input_usuario_bin"></div>
+        <h3>Binário</h3>
+
+        <div id="demo4">
+                <input type="text" placeholder="Insira sua resposta" id="input_usuario_bin">
+        </div>
 
 <br><br>
 
 <button onclick="converter()">Converter</button>
+
     </center>
 
 
@@ -49,6 +73,8 @@
 <script>
 var numeroAleatorio = 0;
 
+var streak = 0;
+var recorde = 0;
 function converter() {
     
     var decimal = numeroAleatorio;
@@ -89,7 +115,22 @@ if(usuarioHex == hexadecimal) {
 if(usuarioBin == binaria) {
         document.getElementById("demo4").innerHTML = `<input id = "input_usuario_bin"><br><span style = "color: green">${binaria}</span>`
 }else {
-        document.getElementById("demo4").innerHTML = `<input id = "input_usuario_bin"><br><span style = "color: red">${decimal}</span>`
+        document.getElementById("demo4").innerHTML = `<input id = "input_usuario_bin"><br><span style = "color: red">ERROU</span>`
+}
+if(usuarioOct == octal && usuarioHex == hexadecimal && usuarioBin == binaria) {  
+        
+        streak++ ;
+        document.getElementById("streak").innerHTML = streak;
+        console.log(streak);
+        if(streak > recorde) {
+                recorde = streak;
+                document.getElementById("recorde").innerHTML = recorde;
+        }
+        gerarNum();        
+
+}else {
+        streak = 0;
+        document.getElementById("streak").innerHTML = streak;
 }
 
 }
@@ -107,10 +148,9 @@ function aparecer_octal() {
 }
 
 function gerarNum() {
-    demo1.style.display = 'block'
     var numeroAleatorioDemo = Math.floor(Math.random()*100);
     numeroAleatorio = numeroAleatorioDemo;
-    document.getElementById("demo1").innerHTML = `${numeroAleatorioDemo}`;        
+    document.getElementById("h3").innerHTML = `${numeroAleatorioDemo}`;        
 }
 document.bgColor = "#00ffff";
 </script></body></html>
