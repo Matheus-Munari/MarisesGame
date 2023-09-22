@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)file:///C:/Users/Marise%20Miranda/Downloads/Marises%20Machine.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body bgcolor="#00ffff">
+    
+    <center>
+        <h1>Marise's Game</h1>
+
+<br><br>
+
+        <h3>Decimal</h3>
+        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(0, 0, 0); width: 15%; height: 40px; font-weight: 500;" id="demo1"></span></div>
+<br><br>
+        <button onclick="gerarNum()">Gerar número aleatório</button>
+<br><br>
+
+        <h3>Acerte todos as conersões e ganhe um premio: </h3>
+
+
+        <input onclick="aparecer_octal()" type="checkbox"><b>Octal</b>
+<br>
+        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(0, 0, 0); width: 15%; height: 40px; font-weight: 500;" id="demo2"><input type="text" id="input_usuario_oct"></div>
+
+<br><br>
+
+        <input onclick="aparecer_hexa()" type="checkbox"><b>Hexadecimal</b>
+<br>
+        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(7, 7, 7); width: 15%; height: 40px; font-weight: 500;" id="demo3"><input type="text" id="input_usuario_hex"></div>
+        
+<br><br>
+
+        <input onclick="aparecer_bin()" type="checkbox"><b>Binário</b>
+<br>
+        <div style="display: none; background-color: #dcdcdc; border-radius: 5px; padding: 5px; color: rgb(5, 5, 5); width: 15%; height: 50px; font-weight: 500;" id="demo4"><input type="text" id="input_usuario_bin"></div>
+
+<br><br>
+
+<button onclick="converter()">Converter</button>
+    </center>
+
+
+
+
+<script>
+var numeroAleatorio = 0;
+
+function converter() {
+    
+    var decimal = numeroAleatorio;
+    var usuarioBin = Number(input_usuario_bin.value);
+    var usuarioHex = input_usuario_hex.value;
+    var usuarioOct = Number(input_usuario_oct.value);
+
+let octal = decimal.toString(8);
+
+let hexadecimal = decimal.toString(16);
+
+let binaria = decimal.toString(2);
+
+console.log (decimal);
+console.log (octal);
+console.log (hexadecimal);
+console.log (binaria);
+
+
+/*
+document.getElementById("demo1").innerHTML = ` ${decimal}`;
+document.getElementById("demo2").innerHTML = ` ${octal}`;
+document.getElementById("demo3").innerHTML = ` ${hexadecimal}`;
+document.getElementById("demo4").innerHTML = ` ${binaria}`;
+*/
+if(usuarioOct == octal) {
+        document.getElementById("demo2").innerHTML = `<input id = "input_usuario_oct"> <br><span style = "color: green">${octal}</span>`;
+}else {
+        document.getElementById("demo2").innerHTML = `<input id = "input_usuario_oct"> <br><span style = "color: red">ERROU</span>`;
+}
+if(usuarioHex == hexadecimal) {
+        document.getElementById("demo3").innerHTML = `<input id="input_usuario_hex"><br><span style = "color: green">${hexadecimal}</span>`;
+        
+}else {
+        document.getElementById("demo3").innerHTML = `<input id="input_usuario_hex"><br><span style= "color: red">ERROU</span>`
+
+}
+if(usuarioBin == binaria) {
+        document.getElementById("demo4").innerHTML = `<input id = "input_usuario_bin"><br><span style = "color: green">${binaria}</span>`
+}else {
+        document.getElementById("demo4").innerHTML = `<input id = "input_usuario_bin"><br><span style = "color: red">${decimal}</span>`
+}
+
+}
+
+function aparecer_bin() {
+    demo4.style.display = 'block'
+}
+
+function aparecer_hexa() {
+    demo3.style.display = 'block'
+}
+
+function aparecer_octal() {
+    demo2.style.display = 'block'
+}
+
+function gerarNum() {
+    demo1.style.display = 'block'
+    var numeroAleatorioDemo = Math.floor(Math.random()*100);
+    numeroAleatorio = numeroAleatorioDemo;
+    document.getElementById("demo1").innerHTML = `${numeroAleatorioDemo}`;        
+}
+document.bgColor = "#00ffff";
+</script></body></html>
